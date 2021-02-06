@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">StateFlowTutorial</string>
+    <string name="hello_flow">Hello Flow!</string>
+</resources>
