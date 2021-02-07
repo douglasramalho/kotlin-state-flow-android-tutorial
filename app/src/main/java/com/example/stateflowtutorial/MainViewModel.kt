@@ -10,14 +10,14 @@ import kotlin.random.Random
 
 class MainViewModel : ViewModel() {
 
-    private val _uiStateFlow = MutableStateFlow<UiState>(UiState.Loading())
+    private val _uiStateFlow = MutableStateFlow<UiState>(UiState.Initial)
     val uiStateFlow: StateFlow<UiState> get() = _uiStateFlow
 
     private var isError = false
 
     fun getSomething() = viewModelScope.launch {
-        _uiStateFlow.value = UiState.Loading(true)
-        delay(2000L)
+        _uiStateFlow.value = UiState.Loading
+        delay(5000L)
 
         isError = Random.nextBoolean()
 
@@ -29,6 +29,7 @@ class MainViewModel : ViewModel() {
     sealed class UiState {
         object Success : UiState()
         object Error : UiState()
-        class Loading(isLoading: Boolean = false) : UiState()
+        object Loading : UiState()
+        object Initial : UiState()
     }
 }
